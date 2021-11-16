@@ -1,16 +1,19 @@
-const {chromium} = require('playwright');
+const { chromium } = require('playwright');
+
+
 
 (async () => {
-   
-    const browser = await chromium.launch({headless: false});
-    const page = await browser.newPage();
 
-    await page.goto('https://github.com/xchanmolx');
+  //Type User Github bellow
+  const username = 'attrix182';
 
-    const content = await page.textContent('[itemprop="name"]');
+  const browser = await chromium.launch();
+  const page = await browser.newPage();
+  await page.goto(`https://github.com/${username}`);
+  const realname = await page.textContent('[itemprop="name"]');
 
-    console.log(content);
-    
-    await browser.close();
-    
-  })();
+  console.log(`Real name of ${username} is ${realname}`);
+
+  await browser.close();
+
+})();
